@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="static/js/jquery.min.js" type="text/javascript"></script>
+<script>
+	function loginuser(){
+		$.ajax({  
+		    type : "POST", //用POST方式传输  
+		    dataType : "json", //数据格式:JSON  
+		    url : 'login.do', //目标地址  
+		    scriptCharset: 'utf-8',
+		    async : true,
+		    data : {
+		    	username : $("#userAccount").val(),
+		    	password : $("#password").val(),
+		    }, 
+		    success : function (data){
+		    	$.each(data, function(idx,element){
+		    		console.log("------>"+element);
+            	 });
+		    },
+		    error : function(){
+		   		 alert("获取信息失败！");
+		    },
+		    
+		});
+	}
+	function test(){
+		$.ajax({  
+		    type : "POST", //用POST方式传输  
+		    dataType : "json", //数据格式:JSON  
+		    url : 'test.do', //目标地址  
+		    scriptCharset: 'utf-8',
+		    async : true,
+		    success : function (data){
+		    	$.each(data, function(idx,element){
+		    		console.log("------>"+JSON.stringify(element));
+            	});
+		    },
+		    error : function(){
+		    },
+		    
+		});
+	}
+</script>
+</head>
+<body>
+	<form method="post" action="">
+		<div>
+			<label for="userName">用户名：</label> <input type="text"
+				id="userAccount" placeholder="请输入用户名">
+		</div>
+		<div>
+			<label for="password">密码：</label> <input type="password"
+				id="password" placeholder="请输入密码"><br>
+		</div>
+		<button type="button" onclick="loginuser()">登录</button>
+	</form>
+	<br/>
+	<form action="" method="post">
+		<button type="button" onclick="test()">test</button>
+	</form>
+</body>
+
+</html>

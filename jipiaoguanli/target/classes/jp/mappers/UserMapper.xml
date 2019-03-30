@@ -4,4 +4,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.dao.UserDao">
 
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id" />
+		<result property="useraccount" column="useraccount" />
+		<result property="useridcare" column="useridcare" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="sex" column="sex"/>
+		<result property="phone" column="phone"/>
+		<result property="money" column="money"/>
+	</resultMap>
+	
+	<select id="userLogin"	parameterType="String" resultType="User">
+		SELECT * FROM jp_user where username=#{username}
+	</select>
+
 </mapper>
