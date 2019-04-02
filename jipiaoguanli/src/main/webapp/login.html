@@ -14,7 +14,7 @@
 		    async : true,
 		    data : {
 		    	username : $("#userAccount").val(),
-		    	password : $("#password").val(),
+		    	password : $("#password1").val(),
 		    }, 
 		    success : function (data){
 		    	$.each(data, function(idx,element){
@@ -44,6 +44,49 @@
 		    
 		});
 	}
+	function register(){
+		useraccount = $("#useraccount").val();
+    	useridcare = $("#useridcare").val();
+    	username = $("#username").val();
+    	password = $("#password").val();
+    	sex = $("#sex").val();
+    	phone = $("#phone").val();
+    	if(username.length <= 0){
+	    	alert("账号不能为空！"); 
+	    }else if(password.length <= 0){
+	    	alert("密码不能为空");
+	    }else if(useraccount.length <= 0){
+	    	alert("姓名不能为空！");
+	    }else if(useridcare.length <= 0){
+	    	alert("身份证不能为空");
+	    }else if(sex.length <= 0){
+	    	alert("需选择性别");
+	    }else if(phone.length <= 0){
+	    	alert("电话号码不能为空");
+	    }else{
+	    	$.ajax({  
+			    type : "POST", //用POST方式传输  
+			    dataType : "json", //数据格式:JSON  
+			    url : 'register.do', //目标地址  
+			    scriptCharset: 'utf-8',
+			    data : {
+                	username : username,
+                	useraccount : useraccount,
+                	password : password,
+                    sex : sex,
+                    useridcare : useridcare,
+                    phone : phone,
+                },
+			    async : true,
+			    success : function (data){
+			    	console.log(data);
+			    },
+			    error : function(e){
+			    	console.log(e);
+			    },
+			});
+	    }
+	}
 </script>
 </head>
 <body>
@@ -53,14 +96,42 @@
 				id="userAccount" placeholder="请输入用户名">
 		</div>
 		<div>
-			<label for="password">密码：</label> <input type="password"
-				id="password" placeholder="请输入密码"><br>
+			<label for="password1">密码：</label> <input type="password"
+				id="password1" placeholder="请输入密码"><br>
 		</div>
 		<button type="button" onclick="loginuser()">登录</button>
 	</form>
 	<br/>
 	<form action="" method="post">
 		<button type="button" onclick="test()">test</button>
+	</form>
+	<br/>
+	<form method="post">
+		<div>
+			<label for="userName">用户名：</label> <input type="text"
+				id="username" placeholder="请输入用户名">
+		</div>
+		<div>
+			<label for="password">密码：</label> <input type="password"
+				id="password" placeholder="请输入密码"><br>
+		</div>
+		<div>
+			<label for="sex">性别：</label> <input type="text"
+				id="sex" placeholder="请输入性别"><br>
+		</div>
+		<div>
+			<label for="phone1">手机号码：</label> <input type="text"
+				id="phone" placeholder="请输入手机号"><br>
+		</div>
+		<div>
+			<label for="useraccount">真实姓名：</label> <input type="text"
+				id="useraccount" placeholder="请输入真实姓名"><br>
+		</div>
+		<div>
+			<label for="useridcare">身份证号码：</label> <input type="text"
+				id="useridcare" placeholder="请输入身份证号码"><br>
+		</div>
+		<button type="button" onclick="register()">登录</button>
 	</form>
 </body>
 

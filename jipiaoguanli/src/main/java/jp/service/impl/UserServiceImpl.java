@@ -18,4 +18,12 @@ public class UserServiceImpl implements UserService{
 		return userDao.userLogin(username);
 	}
 
+	public void addUser(User user) {
+		userDao.addUser(user);
+	}
+
+	public Integer selectName(String username) {
+		return userDao.selectName(username);
+	}
+
 }

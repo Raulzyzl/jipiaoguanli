@@ -15,8 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="money" column="money"/>
 	</resultMap>
 	
+	<!-- 从数据库中查找匹配username的结果 -->
 	<select id="userLogin"	parameterType="String" resultType="User">
 		SELECT * FROM jp_user where username=#{username}
 	</select>
+	
+	<select id="selectName"	parameterType="String" resultType="Integer">
+		SELECT count(username) FROM jp_user where username=#{username}
+	</select>
+	
+	<!-- 添加新用户 -->
+	<insert id="addUser" parameterType="User">
+		insert into jp_user values
+		(null,#{useraccount},#{useridcare},#{username},#{password},#{sex},#{phone},0) 
+	</insert>
 
 </mapper>

@@ -11,4 +11,18 @@ public interface UserService {
 	 * @param password
 	 */
 	public User userLogin(String username);
+	
+	/**
+	 * 用户注册
+	 * @param user
+	 * @return
+	 */
+	public void addUser(User user);
+	
+	/**
+	 * 查询有无与传入的username匹配的结果--注册
+	 * @param username
+	 * @return
+	 */
+	public Integer selectName(String username);
 }
