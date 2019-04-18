@@ -25,4 +25,11 @@ public interface UserService {
 	 * @return
 	 */
 	public Integer selectName(String username);
+	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	public Integer updateUser(User user);
 }

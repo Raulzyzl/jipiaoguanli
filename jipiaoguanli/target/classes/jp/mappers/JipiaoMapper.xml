@@ -2,8 +2,32 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="jp.dao.UserDao">
+<mapper namespace="jp.dao.JipiaoDao">
 
+	<resultMap type="Jipiao" id="JipiaoResult">
+    	<result property="id" column="id"/>
+    	<result property="chufadi" column="chufadi"/>
+    	<result property="daodadi" column="daodadi"/>
+    	<result property="piaojia" column="piaojia"/>
+    	<result property="chufashijian" column="chufashijian"/>
+    	<result property="daodashijian" column="daodashijian"/>
+    	<result property="chufariqi" column="chufariqi"/>
+		<collection property="hangkonggongsi_id" ofType="Hangkonggongsi">
+			<result property="hangkonggongsi" column="hangkonggongsi"/>
+		</collection>
+    </resultMap>
 
+	<select id="getAlljipiao" resultMap="JipiaoResult">
+		select * from jp_jipiao j1 inner join jp_hangkong j2 on j2.id = j1.hangkonggongsi_id
+	</select>
+	
+	<select id="getJipiao" parameterType="Jipiao" resultMap="JipiaoResult">
+		select * from jp_jipiao j1 inner join jp_hangkong j2 on j2.id = j1.hangkonggongsi_id
+		<where>
+			<if test="chufadi != null and chufadi != ''"> chufadi = #{chufadi} </if>
+			<if test="daodadi != null and daodadi != ''"> and daodadi = #{daodadi} </if>
+			<if test="chufariqi != null and chufariqi != ''"> and chufariqi = #{chufariqi} </if>
+		</where>
+	</select>
 
 </mapper>

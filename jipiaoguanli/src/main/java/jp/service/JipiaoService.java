@@ -11,6 +11,13 @@ public interface JipiaoService {
 	 * @param date
 	 * @return
 	 */
-	public List<Jipiao> getAlljipiao(String date);
+	public List<Jipiao> getAlljipiao();
+	
+	/**
+	 * 根据条件搜索
+	 * @param jipiao
+	 * @return
+	 */
+	public List<Jipiao> getJipiao(Jipiao jipiao);
 	
 }

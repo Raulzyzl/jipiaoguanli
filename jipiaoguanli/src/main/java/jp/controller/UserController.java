@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -45,7 +44,6 @@ public class UserController {
 	@ResponseBody
 	public void login(String username,
 			String password,
-			HttpServletRequest request,
 			Map<String,Object> map,
 			HttpServletResponse response) throws IOException {
 		//创建一个json对象
@@ -97,6 +95,14 @@ public class UserController {
 		
 	}
 	
+	/**
+	    *   用户注册
+	 * @param user
+	 * @param httpSession
+	 * @param response
+	 * @param map
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public void register(User user, HttpSession httpSession, HttpServletResponse response,Map<String,Object> map) throws IOException {
@@ -117,4 +123,23 @@ public class UserController {
 		response.getWriter().write(jo.toString());
 	}
 	
+	/**
+	 * 修改用户信息
+	 * @param user
+	 * @param httpSession
+	 * @param response
+	 * @param map
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/updateuser", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateuser(User user, HttpSession httpSession, HttpServletResponse response,Map<String,Object> map) throws IOException {
+		User loginuser = (User) httpSession.getAttribute("loginid");
+		user.setUsername(loginuser.getUsername());
+		Integer update = userService.updateUser(user);
+		JSONObject jo = new JSONObject();
+		jo.put("msg", update);
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write(jo.toString());
+	}
 }

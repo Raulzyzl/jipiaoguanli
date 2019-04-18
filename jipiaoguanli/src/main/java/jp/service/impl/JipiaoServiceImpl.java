@@ -16,8 +16,12 @@ public class JipiaoServiceImpl implements JipiaoService{
 	@Resource
 	private JipiaoDao jipiaoDao;
 	
-	public List<Jipiao> getAlljipiao(String date) {
-		return jipiaoDao.getAlljipiao(date);
+	public List<Jipiao> getAlljipiao() {
+		return jipiaoDao.getAlljipiao();
+	}
+
+	public List<Jipiao> getJipiao(Jipiao jipiao) {
+		return jipiaoDao.getJipiao(jipiao);
 	}
 
 }

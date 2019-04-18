@@ -87,6 +87,49 @@
 			});
 	    }
 	}
+	function getalljipiao(){
+		$.ajax({  
+		    type : "POST", //用POST方式传输  
+		    dataType : "json", //数据格式:JSON  
+		    url : 'getalljipiao.do', //目标地址  
+		    scriptCharset: 'utf-8',
+		    async : true,
+		    success : function (data){
+		    	$.each(data, function(idx,element){
+		    		console.log("------>"+JSON.stringify(element));
+            	});
+		    },
+		    error : function(){
+		    },
+		    
+		});
+	}
+	function findjipiao1(){
+		chufadi = $("#chufadi").val();
+    	daodadi = $("#daodadi").val();
+    	chufariqi = $("#chufariqi").val();
+		$.ajax({  
+		    type : "POST", //用POST方式传输  
+		    dataType : "json", //数据格式:JSON  
+		    url : 'findjipiao.do', //目标地址  
+		    scriptCharset: 'utf-8',
+		    data : {
+		    	chufadi : chufadi,
+            	daodadi : daodadi,
+            	chufariqi : chufariqi,
+            },
+		    async : true,
+		    success : function (data){
+		    	$.each(data, function(idx,element){
+		    		console.log("------>"+JSON.stringify(element));
+            	});
+		    },
+		    error : function(){
+		    },
+		    
+		});
+	}
+	
 </script>
 </head>
 <body>
@@ -132,6 +175,24 @@
 				id="useridcare" placeholder="请输入身份证号码"><br>
 		</div>
 		<button type="button" onclick="register()">登录</button>
+	</form>
+	<br>
+	<button type="button" onclick="getalljipiao()">getalljipiao1</button>
+	<br>
+	<form method="post">
+		<div>
+			<label for="chufadi">出发地：</label> <input type="text"
+				id="chufadi" placeholder="">
+		</div>
+		<div>
+			<label for="daodadi">到达地：</label> <input type="text"
+				id="daodadi" placeholder="">
+		</div>
+		<div>
+			<label for="chufariqi">出发时间：</label> <input type="text"
+				id="chufariqi" placeholder="">
+		</div>
+		<button type="button" onclick="findjipiao1()">find</button>
 	</form>
 </body>
 

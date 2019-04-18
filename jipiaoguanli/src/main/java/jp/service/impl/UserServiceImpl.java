@@ -26,4 +26,8 @@ public class UserServiceImpl implements UserService{
 		return userDao.selectName(username);
 	}
 
+	public Integer updateUser(User user) {
+		return userDao.updateUser(user);
+	}
+
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.dao.DingdanDao">
+
+	<resultMap type="Dingdan" id="DingdanResult">
+		<result property="id" column="id" />
+		<collection property="user_id" ofType="User">
+			<result property="useraccount" column="useraccount" />
+			<result property="sex" column="sex" />
+			<result property="phone" column="phone" />
+			<result property="money" column="money" />
+		</collection>
+		<collection property="jipiao_id" ofType="Jipiao">
+			<result property="id" column="id" />
+			<result property="chufadi" column="chufadi" />
+			<result property="daodadi" column="daodadi" />
+			<result property="piaojia" column="piaojia" />
+			<result property="chufashijian" column="chufashijian" />
+			<result property="daodashijian" column="daodashijian" />
+			<result property="chufariqi" column="chufariqi" />
+			<collection property="hangkonggongsi_id"
+				ofType="Hangkonggongsi">
+				<result property="hangkonggongsi" column="hangkonggongsi" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="getdingdan" parameterType="String" resultMap="DingdanResult">
+		SELECT * from jp_dingdan j1 INNER JOIN jp_user j2 on j2.id = j1.user_id
+		 INNER JOIN jp_jipiao j3 ON j3.id = j1.jipiao_id
+		  INNER JOIN jp_hangkong j4 on j4.id = j3.hangkonggongsi_id
+		   WHERE j2.username = #{username}
+	</select>
+
+</mapper>
