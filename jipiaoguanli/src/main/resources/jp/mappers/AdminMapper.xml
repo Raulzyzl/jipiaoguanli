@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.dao.AdminDao">
+
+	<resultMap type="User" id="UserResult">
+		<result property="id" column="id" />
+		<result property="useraccount" column="useraccount" />
+		<result property="useridcare" column="useridcare" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="sex" column="sex"/>
+		<result property="phone" column="phone"/>
+		<result property="money" column="money"/>
+	</resultMap>
+	
+	<resultMap type="Jipiao" id="JipiaoResult">
+    	<result property="id" column="id"/>
+    	<result property="chufadi" column="chufadi"/>
+    	<result property="daodadi" column="daodadi"/>
+    	<result property="piaojia" column="piaojia"/>
+    	<result property="chufashijian" column="chufashijian"/>
+    	<result property="daodashijian" column="daodashijian"/>
+    	<result property="chufariqi" column="chufariqi"/>
+		<collection property="hangkonggongsi_id" ofType="Hangkonggongsi">
+			<result property="hangkonggongsi" column="hangkonggongsi"/>
+		</collection>
+    </resultMap>
+    
+	<select id="adminLogin" parameterType="String" resultType="Admin">
+		select * from jp_admin where username=#{username}
+	</select>
+
+	<select id="getAllUser" resultMap="UserResult">
+		select * from jp_user
+	</select>
+	
+	<select id="countdingdan" parameterType="String" resultType="int">
+		select count(*) from jp_user j1 inner join jp_dingdan j2 on j1.id=j2.user_id
+		 where j1.username=#{username} and j2.jpstatus = 0;
+	</select>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from jp_user where adminname=#{adminname}
+	</delete>
+	
+	<select id="getAllJipiao" resultMap="JipiaoResult">
+		select * from jp_jipiao j1 inner join jp_hangkong j2 on j2.id = j1.hangkonggongsi_id
+	</select>
+	
+	<insert id="addUser" parameterType="User">
+		insert into jp_jipiao values
+		(null,#{jp.chufadi},#{jp.daodadi},#{jp.piaojia},#{jp.chufashijian},#{jp.daodashijian},#{jp.chufariqi},(select id from jp_hangkong where hangkonggongsi = #{hkgs})) 
+	</insert>
+	
+	<delete id="deleteJipiao" parameterType="int">
+		delete from jp_jipiao where id=#{id}
+	</delete>
+
+</mapper>

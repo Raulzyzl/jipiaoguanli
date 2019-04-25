@@ -33,5 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  INNER JOIN jp_hangkong j4 on j4.id = j3.hangkonggongsi_id
 		   WHERE j2.username = #{username}
 	</select>
+	
+	<update id="updateStatus">
+	
+	</update>
 
 </mapper>

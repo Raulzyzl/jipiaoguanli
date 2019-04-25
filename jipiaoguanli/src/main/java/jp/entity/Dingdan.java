@@ -7,7 +7,8 @@ public class Dingdan {
 	private Jipiao jipiao_id;
 	private String goumairiqi;
 	private Integer jpstatus;
-	
+	private int yiwaixian;
+	private int yanwuxian;
 	
 	public int getId() {
 		return id;
@@ -39,14 +40,26 @@ public class Dingdan {
 	public void setJpstatus(Integer jpstatus) {
 		this.jpstatus = jpstatus;
 	}
+	public int getYiwaixian() {
+		return yiwaixian;
+	}
+	public void setYiwaixian(int yiwaixian) {
+		this.yiwaixian = yiwaixian;
+	}
+	public int getYanwuxian() {
+		return yanwuxian;
+	}
+	public void setYanwuxian(int yanwuxian) {
+		this.yanwuxian = yanwuxian;
+	}
 	
 	@Override
 	public String toString() {
-		return "Dingdan [id=" + id
-				+ ", user_id=" + user_id + ", jipiao_id="
-				+ jipiao_id + ", goumairiqi=" + goumairiqi
-				+ ", jpstatus=" + jpstatus + "]";
+		return "Dingdan [id=" + id + ", user_id=" + user_id + ", jipiao_id=" + jipiao_id + 
+				", goumairiqi=" + goumairiqi
+				+ ", jpstatus=" + jpstatus + ", yiwaixian=" + yiwaixian + ", yanwuxian=" + yanwuxian + "]";
 	}
+	
 	
 	
 	

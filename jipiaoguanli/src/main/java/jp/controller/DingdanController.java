@@ -14,16 +14,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.entity.Dingdan;
 import jp.entity.User;
 import jp.service.DingdanService;
+import jp.service.PayService;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class DingdanController {
 
 	@Resource
 	private DingdanService dingdanService;
+	@Resource
+	private PayService payService;
+	
+	//正常状态
+	public static int STATUS_ZHENGCHANG = 0;
+	//改签状态
+	public static int STATUS_GAIQIAN = 1;
+	//退票状态
+	public static int STATUS_TUIPIAO = 2;
 
 	/**
 	 * 获取订单
+	 * 
 	 * @param httpSession
 	 * @param response
 	 * @throws IOException
@@ -36,8 +48,30 @@ public class DingdanController {
 		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().write(ja.toString());
 	}
+
+	/**
+	 * 退票
+	 * 
+	 * @param shouxufei
+	 * @param httpSession
+	 * @param response
+	 * @throws IOException
+	 */
+	public void refundTicket(int daoshoumoney, HttpSession httpSession, HttpServletResponse response)
+			throws IOException {
+		User user = (User) httpSession.getAttribute("loginid");
+		JSONObject jo = new JSONObject();
+		int updatemoney = user.getMoney() + daoshoumoney;
+		int status = STATUS_TUIPIAO;
+		payService.updateUserMoney(user.getUsername(), updatemoney);
+		dingdanService.updateStatus(status);
+		jo.put("msg", "退票成功");
+		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().write(jo.toString());
+	}
 	
-	public void refundTicket() {
+	public void changeTicket(HttpSession httpSession, HttpServletResponse response) {
+		User user = (User) httpSession.getAttribute("loginid");
 		
 	}
 

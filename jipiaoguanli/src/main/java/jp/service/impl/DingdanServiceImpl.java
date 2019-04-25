@@ -20,4 +20,8 @@ public class DingdanServiceImpl implements DingdanService{
 		return dingdanDao.getdingdan(username);
 	}
 
+	public Integer updateStatus(Integer status) {
+		return dingdanDao.updateStatus(status);
+	}
+
 }
