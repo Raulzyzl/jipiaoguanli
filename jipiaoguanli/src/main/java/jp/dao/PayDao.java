@@ -1,5 +1,7 @@
 package jp.dao;
 
+import jp.entity.Dingdan;
+
 public interface PayDao {
 	
 	/**
@@ -9,6 +11,11 @@ public interface PayDao {
 	 */
 	public Integer updateUserMoney(String username, int money);
 	
-	
+	/**
+	 * 购买机票
+	 * @param piaojia
+	 * @return
+	 */
+	public Integer payJipiao(Dingdan dingdan);
 
 }

@@ -11,5 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	</set> 
     	where username = #{0}
     </update>
+    
+    <insert id="payJipiao" parameterType="Dingdan">
+		insert into jp_dingdan values
+		(null,#{user_id.id},#{jipiao_id.id},#{goumairiqi},null,#{yiwaixian},#{yanwuxian}) 
+	</insert>
 
 </mapper>

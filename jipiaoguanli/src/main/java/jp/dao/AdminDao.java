@@ -28,14 +28,14 @@ public interface AdminDao {
 	 * @param userid
 	 * @return
 	 */
-	public int countdingdan(String username);
+	public Integer countdingdan(String username);
 	
 	/**
 	 * 管理员删除用户
 	 * @param username
 	 * @return
 	 */
-	public int deleteUser(String username);
+	public Integer deleteUser(String username);
 	
 	/**
 	 * 获取所有机票
@@ -48,12 +48,12 @@ public interface AdminDao {
 	 * @param jipiao
 	 * @return
 	 */
-	public int addJipiao(@Param("jp")Jipiao jipiao, @Param("hkgs")String hangkonggongsi);
+	public Integer addJipiao(@Param("jp")Jipiao jipiao, @Param("hkgs")String hangkonggongsi);
 	
 	/**
 	 * 删除机票
 	 * @param id
 	 * @return
 	 */
-	public int deleteJipiao(int id);
+	public Integer deleteJipiao(int id);
 }

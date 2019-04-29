@@ -19,5 +19,5 @@ public interface JipiaoDao {
 	 * @return
 	 */
 	public List<Jipiao> getJipiao(Jipiao jipiao);
-
+	
 }

@@ -57,11 +57,11 @@ public class DingdanController {
 	 * @param response
 	 * @throws IOException
 	 */
-	public void refundTicket(int daoshoumoney, HttpSession httpSession, HttpServletResponse response)
+	public void refundTicket(int jipiaomoney, HttpSession httpSession, HttpServletResponse response)
 			throws IOException {
 		User user = (User) httpSession.getAttribute("loginid");
 		JSONObject jo = new JSONObject();
-		int updatemoney = user.getMoney() + daoshoumoney;
+		int updatemoney = (int) (user.getMoney() + (jipiaomoney * 0.8));
 		int status = STATUS_TUIPIAO;
 		payService.updateUserMoney(user.getUsername(), updatemoney);
 		dingdanService.updateStatus(status);
@@ -70,7 +70,7 @@ public class DingdanController {
 		response.getWriter().write(jo.toString());
 	}
 	
-	public void changeTicket(HttpSession httpSession, HttpServletResponse response) {
+	public void changeTicket(int changejipiaoid, HttpSession httpSession, HttpServletResponse response) {
 		User user = (User) httpSession.getAttribute("loginid");
 		
 	}

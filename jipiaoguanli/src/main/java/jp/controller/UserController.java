@@ -67,6 +67,7 @@ public class UserController {
 			}
 		}
 		//将json数据传到前台
+		response.setContentType("text/html;charset=UTF-8");
 		response.getWriter().write(jo.toString());
 	}
 	
@@ -137,6 +138,16 @@ public class UserController {
 		User loginuser = (User) httpSession.getAttribute("loginid");
 		user.setUsername(loginuser.getUsername());
 		Integer update = userService.updateUser(user);
+		if(update == 1) {
+			int sex = user.getSex();
+			if(sex == 0 && "".equals(sex)) {
+				loginuser.setSex(sex);
+			}
+			if(user.getPhone() != null && "".equals(user.getPhone())) {
+				loginuser.setPhone(user.getPhone());
+			}
+			map.put("loginid", loginuser);
+		}
 		JSONObject jo = new JSONObject();
 		jo.put("msg", update);
 		response.setContentType("text/html;charset=UTF-8");

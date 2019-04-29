@@ -22,11 +22,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.getAllUser();
 	}
 	
-	public int countdingdan(String username) {
+	public Integer countdingdan(String username) {
 		return adminDao.countdingdan(username);
 	}
 
-	public int deleteUser(String username) {
+	public Integer deleteUser(String username) {
 		return adminDao.deleteUser(username);
 	}
 
@@ -38,11 +38,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.getAllJipiao();
 	}
 
-	public int addJipiao(Jipiao jipiao, String hangkonggongsi) {
+	public Integer addJipiao(Jipiao jipiao, String hangkonggongsi) {
 		return adminDao.addJipiao(jipiao, hangkonggongsi);
 	}
 
-	public int deleteJipiao(int id) {
+	public Integer deleteJipiao(int id) {
 		return adminDao.deleteJipiao(id);
 	}
 

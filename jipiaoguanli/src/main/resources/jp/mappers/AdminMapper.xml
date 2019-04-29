@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from jp_jipiao j1 inner join jp_hangkong j2 on j2.id = j1.hangkonggongsi_id
 	</select>
 	
-	<insert id="addUser" parameterType="User">
+	<insert id="addJipiao">
 		insert into jp_jipiao values
 		(null,#{jp.chufadi},#{jp.daodadi},#{jp.piaojia},#{jp.chufashijian},#{jp.daodashijian},#{jp.chufariqi},(select id from jp_hangkong where hangkonggongsi = #{hkgs})) 
 	</insert>

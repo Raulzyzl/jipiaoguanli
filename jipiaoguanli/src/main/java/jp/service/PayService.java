@@ -1,5 +1,7 @@
 package jp.service;
 
+import jp.entity.Dingdan;
+
 public interface PayService {
 	
 	/**
@@ -9,4 +11,10 @@ public interface PayService {
 	 */
 	public Integer updateUserMoney(String username, int money);
 
+	/**
+	 * 购买机票
+	 * @param piaojia
+	 * @return
+	 */
+	public Integer payJipiao(Dingdan dingdan);
 }
